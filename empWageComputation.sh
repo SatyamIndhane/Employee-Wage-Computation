@@ -38,5 +38,28 @@ function PartTimeWage(){
 	fi
 	echo $wage
 }
-result="$(PartTimeWage)"
+
+function SwitchCase(){
+	local isFullTime=1
+	local isPartTime=0
+	local empRatePerHr=20
+	local empCheck=$((RANDOM%3))
+	case $empCheck in
+				$isFullTime)
+						empHrs=8
+						;;
+				$isPartTime)
+						empHrs=4
+						;;
+				*)
+						empHrs=0
+						;;
+	esac
+
+	salary=$(( empHrs*empRatePerHr ))
+	echo $salary
+}
+
+
+result="$(SwitchCase)"
 echo $result
