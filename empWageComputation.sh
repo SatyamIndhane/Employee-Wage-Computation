@@ -117,9 +117,14 @@ function WorkingLimit(){
 	totalSalary=$(( $salary+$totalSalary ))
 	done
 	
-	echo $currenthr $currentday
+	echo $currenthr
 
 }
 
-result="$(WorkingLimit)"
+function Workhr(){
+	local result="$(WorkingLimit)"
+	echo $result
+}
+
+result="$(Workhr)"
 echo $result
