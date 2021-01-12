@@ -86,5 +86,40 @@ function WagesForMonth(){
 	echo $totalSalary
 }
 
-result="$(WagesForMonth)"
+function WorkingLimit(){
+	local MAXWORKHRS=100
+	local MAXWORKDAYS=20
+	local currenthr=0
+	local currentday=1
+	local totalSalary=0
+	local isFullTime=1
+	local isPartTime=0
+	local empRatePerHr=20
+	local empCheck=$((RANDOM%3))
+
+	while (( MAXWORKHRS>currenthr && MAXWORKDAYS>currentday ))
+	do
+	case $empCheck in
+				$isFullTime)
+						empHrs=8
+						;;
+				$isPartTime)
+						empHrs=4
+						;;
+				*)
+						empHrs=0
+						;;
+	esac
+	
+	((currentday++))
+	currenthr=$(( empHrs+currenthr ))
+	salary=$(( empHrs*empRatePerHr ))
+	totalSalary=$(( $salary+$totalSalary ))
+	done
+	
+	echo $currenthr $currentday
+
+}
+
+result="$(WorkingLimit)"
 echo $result
