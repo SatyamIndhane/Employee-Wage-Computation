@@ -60,6 +60,31 @@ function SwitchCase(){
 	echo $salary
 }
 
+function WagesForMonth(){
+	local totalSalary=0
+	local isFullTime=1
+	local isPartTime=0
+	local empRatePerHr=20
+	local empCheck=$((RANDOM%3))
+	for (( counter=1; counter<=20; counter++ ))
+	do
+	case $empCheck in
+				$isFullTime)
+						empHrs=8
+						;;
+				$isPartTime)
+						empHrs=4
+						;;
+				*)
+						empHrs=0
+						;;
+	esac
 
-result="$(SwitchCase)"
+	salary=$(( empHrs*empRatePerHr ))
+	totalSalary=$(( $salary+$totalSalary ))
+	done
+	echo $totalSalary
+}
+
+result="$(WagesForMonth)"
 echo $result
