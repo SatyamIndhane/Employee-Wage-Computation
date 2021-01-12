@@ -27,5 +27,16 @@ function dailywage(){
 	echo $wage
 }
 
-result="$(dailywage)"
+function PartTimeWage(){
+	local result="$(attendance)"
+	if [ $result == 'p' ]
+	then
+		wage=$((20*8))
+	elif [ $result == 'a' ]
+	then
+		wage=0
+	fi
+	echo $wage
+}
+result="$(PartTimeWage)"
 echo $result
